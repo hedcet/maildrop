@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "axios": "^0.19.2",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "url": "^0.11.0"
   },
   "main": "main.js",
-  "name": "maildrop-api",
-  "scripts": {},
-  "version": "1.0.0"
+  "name": "@maildrop/api",
+  "version": "1.0.1"
 }
