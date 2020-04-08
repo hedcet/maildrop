@@ -43,7 +43,7 @@ fetch mails
 }
 ```
 
-##### deleteMail(email, id)
+##### async deleteMail(email, id)
 
 delete individual mail
 @return [Object] `{ deleted: true }`
@@ -58,6 +58,6 @@ for (const mail of mails)
   console.log(await maildrop.deleteMail("linto", mail.id));
 ```
 
-##### getApiKey()
+##### async getApiKey()
 
 return String `x-api-key`, you can use this in http header
