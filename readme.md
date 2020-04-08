@@ -1,4 +1,4 @@
-# MailDrop NodeJS API
+# node-js API for maildrop.cc
 
 helper APIs to fetch mail objects from https://maildrop.cc
 

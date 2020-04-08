@@ -4,6 +4,7 @@
     "moment": "^2.24.0",
     "url": "^0.11.0"
   },
+  "description": "node-js API for maildrop.cc",
   "keywords": [
     "anonymous",
     "email",
@@ -16,5 +17,5 @@
     "type": "git",
     "url": "https://github.com/HedCET/maildrop.git"
   },
-  "version": "1.0.5"
+  "version": "1.0.7"
 }
