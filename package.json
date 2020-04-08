@@ -5,7 +5,9 @@
     "url": "^0.11.0"
   },
   "keywords": [
+    "anonymous",
     "email",
+    "fetch",
     "maildrop"
   ],
   "main": "main.js",

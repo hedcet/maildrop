@@ -15,14 +15,14 @@ npm install --save @maildrop/api
 for basic test
 
 ```js
-const mails = await maildrop.getMails("linto@maildrop.cc");
+const mails = await maildrop.fetchMails("linto@maildrop.cc");
 console.log(`${mails.length || "zero"} mails`);
 
 for (const mail of mails)
   console.log(`==========\n${JSON.stringify(mail, null, 2)}\n==========`);
 ```
 
-##### async getMails(email)
+##### async fetchMails(email)
 
 fetch mails
 @return Object[] like this `{ id, from, to, subject, date, body, html }[]`
