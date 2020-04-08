@@ -18,7 +18,7 @@ module.exports = {
    * @function deleteMail
    * @param {String} email="" required, email id
    * @param {String} id="" required, individual email object id
-   * @return {Object} sample { deleted: true }
+   * @return {Object} like this { deleted: true }
    */
   async deleteMail(email = "", id = "") {
     if (!email || !id) throw new Error("invalid args");
@@ -55,7 +55,7 @@ module.exports = {
    * async
    * @function getMails
    * @param {String} email="" required, email id
-   * @return {Object[]} sample { id, from, to, subject, date, body, html }[]
+   * @return {Object[]} like this { id, from, to, subject, date, body, html }[]
    */
   async getMails(email = "") {
     if (!email) throw new Error("email required");

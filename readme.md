@@ -1,8 +1,8 @@
 # MailDrop NodeJS API
 
-APIs to get mails object from https://maildrop.cc
+helper APIs to fetch mail objects from https://maildrop.cc
 
-# install
+### install
 
 with [npm](https://www.npmjs.com/package/@maildrop/api) do:
 
@@ -10,7 +10,7 @@ with [npm](https://www.npmjs.com/package/@maildrop/api) do:
 npm install --save @maildrop/api
 ```
 
-# usage
+### usage
 
 for basic test
 
@@ -22,10 +22,10 @@ for (const mail of mails)
   console.log(`==========\n${JSON.stringify(mail, null, 2)}\n==========`);
 ```
 
-### getMails(email)
+##### async getMails(email)
 
-fetch mails from corresponding email
-@return Object[] sample { id, from, to, subject, date, body, html }[]
+fetch mails
+@return Object[] like this `{ id, from, to, subject, date, body, html }[]`
 
 | opt   | type                | description                         |
 | ----- | ------------------- | ----------------------------------- |
@@ -43,7 +43,7 @@ fetch mails from corresponding email
 }
 ```
 
-### deleteMail(email, id)
+##### deleteMail(email, id)
 
 delete individual mail
 @return [Object] `{ deleted: true }`
@@ -58,6 +58,6 @@ for (const mail of mails)
   console.log(await maildrop.deleteMail("linto", mail.id));
 ```
 
-### getApiKey()
+##### getApiKey()
 
-return `x-api-key`, you can use this http header for advanced usage
+return String `x-api-key`, you can use this in http header
