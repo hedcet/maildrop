@@ -1,5 +1,4 @@
 const axios = require("axios");
-const moment = require("moment");
 const url = require("url");
 
 module.exports = {
@@ -10,8 +9,8 @@ module.exports = {
   // api key for 'x-api-key' header
   apiKey: "",
 
-  // api key expiry
-  apiKeyExpiry: "1970-01-01",
+  // api key expiry timestamp
+  apiKeyExpiry: 0,
 
   /**
    * async
@@ -72,13 +71,13 @@ module.exports = {
    * @return {String} api key for 'x-api-key' header
    */
   async getApiKey() {
-    if (!this.apiKey || moment().isAfter(this.apiKeyExpiry)) {
+    if (!this.apiKey || this.apiKeyExpiry < new Date().getTime()) {
       const { data: html } = await axios.get(this.webHost);
       const { data: js } = await axios.get(
         url.resolve(this.webHost, html.match(/([^"]+static\/js\/main[^"]+)/)[1])
       );
       this.apiKey = js.match(/x-api-key":"([^"]+)/)[1];
-      this.apiKeyExpiry = moment().add(60, "minutes").toDate(); // every 1 hour renew apiKey logic
+      this.apiKeyExpiry = new Date().getTime() + 2 * 60 * 60 * 1000; // expired in 2 hour
     }
     return this.apiKey;
   },
