@@ -2,7 +2,9 @@ const maildrop = require("./main.js");
 
 (async () => {
   const email = "linto@maildrop.cc";
-  console.log("email", email);
+  const modifier = "20190422";
+
+  console.log({ email, modifier });
 
   // test encrypting
   console.log(
@@ -10,7 +12,7 @@ const maildrop = require("./main.js");
     "encrypting",
     email,
     "to",
-    maildrop.encryptEmailId(email, "20200101"),
+    maildrop.encryptEmailId(email, modifier),
     "=========="
   );
 
@@ -18,12 +20,9 @@ const maildrop = require("./main.js");
   console.log(
     "==========",
     "decrypting",
-    maildrop.encryptEmailId(email, "20200101"),
+    maildrop.encryptEmailId(email, modifier),
     "to",
-    maildrop.decryptEmailId(
-      maildrop.encryptEmailId(email, "20200101"),
-      "20200101"
-    ),
+    maildrop.decryptEmailId(maildrop.encryptEmailId(email, modifier), modifier),
     "=========="
   );
 

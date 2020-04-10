@@ -74,7 +74,11 @@ encrypt email id
 | opt      | type                | description                         |
 | -------- | ------------------- | ----------------------------------- |
 | email    | <code>String</code> | [required] sample linto@maildrop.cc |
-| modifier | <code>String</code> | [optional] default 20190422         |
+| modifier | <code>String</code> | [optional] number                   |
+
+```js
+maildrop.encryptEmailId("linto@maildrop.cc", "20200101");
+```
 
 ##### async decryptEmailId(email, modifier)
 
@@ -84,4 +88,8 @@ decrypt email id
 | opt      | type                | description                            |
 | -------- | ------------------- | -------------------------------------- |
 | email    | <code>String</code> | [required] sample D-214cc9@maildrop.cc |
-| modifier | <code>String</code> | [optional] default 20190422            |
+| modifier | <code>String</code> | [optional] number                      |
+
+```js
+maildrop.decryptEmailId("D-214cc9@maildrop.cc", "20200101");
+```

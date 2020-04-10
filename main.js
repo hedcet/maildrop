@@ -5,7 +5,7 @@ const url = require("url");
 module.exports = {
   // api base url & path
   apiHost: "https://api.maildrop.cc",
-  apiPath: "/v2/mailbox",
+  apiRelativePath: "/v2/mailbox",
 
   // api key for 'x-api-key' header
   apiKey: "",
@@ -46,7 +46,7 @@ module.exports = {
     const options = { headers: { "x-api-key": await this.getApiKey() } };
 
     const { data } = await axios.delete(
-      url.resolve(this.apiHost, `${this.apiPath}/${alias}/${id}`),
+      url.resolve(this.apiHost, `${this.apiRelativePath}/${alias}/${id}`),
       options
     );
 
@@ -86,13 +86,16 @@ module.exports = {
     const options = { headers: { "x-api-key": await this.getApiKey() } };
 
     const { data: inbox } = await axios.get(
-      url.resolve(this.apiHost, `${this.apiPath}/${alias}`),
+      url.resolve(this.apiHost, `${this.apiRelativePath}/${alias}`),
       options
     );
 
     for (const message of inbox.messages) {
       const { data } = await axios.get(
-        url.resolve(this.apiHost, `${this.apiPath}/${alias}/${message.id}`),
+        url.resolve(
+          this.apiHost,
+          `${this.apiRelativePath}/${alias}/${message.id}`
+        ),
         options
       );
 
