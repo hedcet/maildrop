@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "axios": "^0.19.2",
-    "big-integer": "^1.6.48",
     "url": "^0.11.0"
   },
   "description": "node-js API for maildrop.cc",
