@@ -14,25 +14,6 @@ module.exports = {
   apiKeyExpiry: 0,
 
   /**
-   * @function decryptEmailId
-   * @param  {String} email="" required, email id
-   * @return {String} like this hello@maildrop.cc
-   */
-  decryptEmailId(email = "", modifier = "") {
-    const alias = email.replace(/@maildrop.cc$/, "");
-
-    return `${bigInteger(
-      bigInteger(alias.replace(/^D\-/i, "").toLowerCase(), 36)
-        .subtract(modifier || this.modifier)
-        .toString()
-        .substr(1)
-        .split("")
-        .reverse()
-        .join("")
-    ).toString(36)}@maildrop.cc`;
-  },
-
-  /**
    * async
    * @function deleteMail
    * @param {String} email="" required, email id
@@ -51,25 +32,6 @@ module.exports = {
     );
 
     return data;
-  },
-
-  /**
-   * @function encryptEmailId
-   * @param  {String} email="" required, email id
-   * @return {String} like this D-1mvdio9@maildrop.cc
-   */
-  encryptEmailId(email = "", modifier = "") {
-    const alias = email.replace(/@maildrop.cc$/, "");
-
-    return `D-${bigInteger(
-      `1${bigInteger(alias.replace(/[^0-9a-z]/gi, "").toLowerCase(), 36)
-        .toString()
-        .split("")
-        .reverse()
-        .join("")}`
-    )
-      .add(modifier || this.modifier)
-      .toString(36)}@maildrop.cc`;
   },
 
   /**
@@ -124,9 +86,6 @@ module.exports = {
     }
     return this.apiKey;
   },
-
-  // for de/encrypting
-  modifier: "20190422",
 
   // to get web html & js
   webHost: "https://maildrop.cc",

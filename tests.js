@@ -2,29 +2,7 @@ const maildrop = require("./main.js");
 
 (async () => {
   const email = "linto@maildrop.cc";
-  const modifier = "20190422";
-
-  console.log({ email, modifier });
-
-  // test encrypting
-  console.log(
-    "==========",
-    "encrypting",
-    email,
-    "to",
-    maildrop.encryptEmailId(email, modifier),
-    "=========="
-  );
-
-  // test decrypting
-  console.log(
-    "==========",
-    "decrypting",
-    maildrop.encryptEmailId(email, modifier),
-    "to",
-    maildrop.decryptEmailId(maildrop.encryptEmailId(email, modifier), modifier),
-    "=========="
-  );
+  console.log(email);
 
   // test fetchMails
   const mails = await maildrop.fetchMails(email);
