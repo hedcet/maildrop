@@ -58,6 +58,30 @@ for (const mail of mails)
   console.log(await maildrop.deleteMail("linto", mail.id));
 ```
 
-##### async getApiKey()
+##### async getApiKey(force)
 
 return String `x-api-key`, you can use this in http header
+
+| opt   | type                 | description                     |
+| ----- | -------------------- | ------------------------------- |
+| force | <code>Boolean</code> | [optional] for forceful refresh |
+
+##### async encryptEmailId(email, modifier)
+
+encrypt email id
+@return String linto@maildrop.cc to D-214cc9@maildrop.cc
+
+| opt      | type                | description                         |
+| -------- | ------------------- | ----------------------------------- |
+| email    | <code>String</code> | [required] sample linto@maildrop.cc |
+| modifier | <code>String</code> | [optional] default 20190422         |
+
+##### async decryptEmailId(email, modifier)
+
+decrypt email id
+@return String D-214cc9@maildrop.cc to linto@maildrop.cc
+
+| opt      | type                | description                            |
+| -------- | ------------------- | -------------------------------------- |
+| email    | <code>String</code> | [required] sample D-214cc9@maildrop.cc |
+| modifier | <code>String</code> | [optional] default 20190422            |
