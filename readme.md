@@ -55,7 +55,7 @@ delete individual mail
 
 ```js
 for (const mail of mails)
-  console.log(await maildrop.deleteMail("linto", mail.id));
+  console.log(await maildrop.deleteMail("linto@maildrop.cc", mail.id));
 ```
 
 ##### async getApiKey(force)
