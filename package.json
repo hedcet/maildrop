@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^0.19.2",
+    "cross-fetch": "^3.0.4",
     "url": "^0.11.0"
   },
   "description": "node-js API for maildrop.cc",
@@ -18,5 +18,5 @@
     "type": "git",
     "url": "https://github.com/HedCET/maildrop.git"
   },
-  "version": "1.0.21"
+  "version": "1.0.23"
 }

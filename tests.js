@@ -2,7 +2,7 @@ const maildrop = require("./main.js");
 
 (async () => {
   const email = "linto@maildrop.cc";
-  console.log(email);
+  console.log({ email, xApiKey: await maildrop.getApiKey() });
 
   // test fetchMails
   const mails = await maildrop.fetchMails(email);

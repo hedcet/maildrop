@@ -1,5 +1,4 @@
-const axios = require("axios");
-const bigInteger = require("big-integer");
+const fetch = require("cross-fetch");
 const url = require("url");
 
 module.exports = {
@@ -24,14 +23,17 @@ module.exports = {
     if (!email || !id) throw new Error("invalid args");
 
     const alias = email.replace(/@maildrop.cc$/, "");
-    const options = { headers: { "x-api-key": await this.getApiKey() } };
+    const options = {
+      headers: { "x-api-key": await this.getApiKey() },
+      method: "DELETE",
+    };
 
-    const { data } = await axios.delete(
-      url.resolve(this.apiHost, `${this.apiRelativePath}/${alias}/${id}`),
-      options
-    );
-
-    return data;
+    return await (
+      await fetch(
+        url.resolve(this.apiHost, `${this.apiRelativePath}/${alias}/${id}`),
+        options
+      )
+    ).json();
   },
 
   /**
@@ -47,19 +49,23 @@ module.exports = {
     const mails = [];
     const options = { headers: { "x-api-key": await this.getApiKey() } };
 
-    const { data: inbox } = await axios.get(
-      url.resolve(this.apiHost, `${this.apiRelativePath}/${alias}`),
-      options
-    );
+    const inbox = await (
+      await fetch(
+        url.resolve(this.apiHost, `${this.apiRelativePath}/${alias}`),
+        options
+      )
+    ).json();
 
     for (const message of inbox.messages) {
-      const { data } = await axios.get(
-        url.resolve(
-          this.apiHost,
-          `${this.apiRelativePath}/${alias}/${message.id}`
-        ),
-        options
-      );
+      const data = await (
+        await fetch(
+          url.resolve(
+            this.apiHost,
+            `${this.apiRelativePath}/${alias}/${message.id}`
+          ),
+          options
+        )
+      ).json();
 
       // contains raw body & html
       mails.push(data);
@@ -77,13 +83,21 @@ module.exports = {
    */
   async getApiKey(force = false) {
     if (force || !this.apiKey || this.apiKeyExpiry < new Date().getTime()) {
-      const { data: html } = await axios.get(this.webHost);
-      const { data: js } = await axios.get(
-        url.resolve(this.webHost, html.match(/([^"]+static\/js\/main[^"]+)/)[1])
-      );
+      const html = await (await fetch(this.webHost)).text();
+
+      const js = await (
+        await fetch(
+          url.resolve(
+            this.webHost,
+            html.match(/([^"]+static\/js\/main[^"]+)/)[1]
+          )
+        )
+      ).text();
+
       this.apiKey = js.match(/x-api-key":"([^"]+)/)[1];
       this.apiKeyExpiry = new Date().getTime() + 6 * 60 * 60 * 1000; // 6 hour expiration
     }
+
     return this.apiKey;
   },
 
