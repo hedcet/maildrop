@@ -1,16 +1,15 @@
 {
   "dependencies": {
-    "cross-fetch": "^3.0.4",
+    "cross-fetch": "^3.0.6",
     "url": "^0.11.0"
   },
   "description": "node-js API for maildrop.cc",
   "keywords": [
     "anonymous",
-    "disposable-email",
+    "anonymous-email",
     "email",
-    "fetch",
-    "maildrop",
-    "temporary-email"
+    "email-test",
+    "maildrop"
   ],
   "main": "main.js",
   "name": "@maildrop/api",
@@ -18,5 +17,5 @@
     "type": "git",
     "url": "https://github.com/HedCET/maildrop.git"
   },
-  "version": "1.0.23"
+  "version": "1.0.25"
 }
