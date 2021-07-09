@@ -1,3 +1,5 @@
+// npm install
+// npx node@12 ./tests.js
 const maildrop = require("./main.js");
 
 (async () => {
